@@ -22,6 +22,12 @@ function App() {
     setNewTodo('')
   }
 
+  const handleMarkComplete = (currentTodo) => {
+    setTodoList(prevState => {
+      return [ ...prevState.filter(todo => todo !== currentTodo) ]
+    })
+  }
+
   return (
     <div className="App">
       <h1>To Dos</h1>
@@ -33,7 +39,8 @@ function App() {
         newTodo={newTodo}
         todoStatus={todoStatus}
         setTodoStatus={setTodoStatus}
-        todoList={todoList} />
+        todoList={todoList}
+        handleMarkComplete={handleMarkComplete} />
     </div>
   );
 }
