@@ -6,7 +6,7 @@ export default function AddTodoForm({ newTodo, handleChange, handleSubmit }) {
       <form onSubmit={(e) => handleSubmit(e)}>
         <input 
           placeholder="Add new todo"
-          value={newTodo}
+          value={newTodo.content}
           onChange={(e) => handleChange(e)}
         />
         <button>Add</button>
