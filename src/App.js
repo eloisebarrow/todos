@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import AddTodoForm from './components/AddTodoForm';
-import Todo from './components/Todo';
+import TodoList from './components/TodoList';
 
 function App() {
+
+  const [newTodo, setNewTodo] = useState('')
+  const [todoStatus, setTodoStatus] = useState('Incomplete')
+
   return (
     <div className="App">
       <h1>To Dos</h1>
-      <AddTodoForm />
-      <Todo />
+      <AddTodoForm 
+        newTodo={newTodo} 
+        setNewTodo={setNewTodo} />
+      <TodoList />
     </div>
   );
 }
