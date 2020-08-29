@@ -1,36 +1,30 @@
 import React from 'react'
 import '../App.css'
 
-export default function Todo({ todoList, handleToggleComplete }) {
+export default function Todo({ todoList, handleToggleComplete, viewStatus, toggleViewStatus }) {
+  const completedTodos = todoList.filter(todo => todo.isComplete).map((todo, i) => {
+    return (
+      <li key={i}
+          onClick={() => handleToggleComplete(todo)}>{todo.content}</li>
+    )
+  })
+
+  const incompleteTodos = todoList.filter(todo => !todo.isComplete).map((todo, i) => {
+    return (
+      <li key={i}
+          onClick={() => handleToggleComplete(todo)}>{todo.content}</li>
+    )
+  })
+
   return (
     <div className="todo-list-container">
+      
       <div>
-        <h3>Here's what's left to do:</h3>
+        <h3 onClick={() => toggleViewStatus()}>{viewStatus}</h3>
         <ul className="todo-list">
-          { todoList && todoList.map((todo, i) => {
-            if (!todo.isComplete) {
-            return (
-              <li key={i}
-                  onClick={() => handleToggleComplete(todo)}>{todo.content}</li>
-            )
-            }
-          })}
+          { viewStatus === 'To Do' ? incompleteTodos : completedTodos }
         </ul>
-      </div>
-
-      <div>
-        <h3>Completed</h3>
-        <ul className="todo-list">
-          { todoList && todoList.map((todo, i) => {
-            if (todo.isComplete) {
-              return (
-                <li key={i}
-                    onClick={() => handleToggleComplete(todo)}>{todo.content}</li>
-              )
-            }
-          })}
-        </ul>
-      </div>
+      </div>      
     </div>
   )
 }

@@ -7,6 +7,7 @@ function App() {
   // HOOKS
   const [newTodo, setNewTodo] = useState({ 'content': '', 'isComplete': false })
   const [todoList, setTodoList] = useState([])
+  const [viewStatus, setViewStatus] = useState('To Do')
 
   const handleChange = (e) => {
     e.preventDefault()
@@ -22,14 +23,18 @@ function App() {
   }
 
   const handleToggleComplete = (currentTodo) => {
-    toggleComplete(currentTodo)
+    currentTodo.isComplete = !currentTodo.isComplete
     setTodoList(prevState => {
       return [ ...prevState ]
     })
   }
 
-  const toggleComplete = (currentTodo) => {
-    currentTodo.isComplete = !currentTodo.isComplete
+  const toggleViewStatus = () => {
+    if (viewStatus === 'To Do') {
+      setViewStatus('Completed');
+    } else {
+      setViewStatus('To Do')
+    }    
   }
 
   return (
@@ -42,7 +47,10 @@ function App() {
       <TodoList 
         newTodo={newTodo}
         todoList={todoList}
-        handleToggleComplete={handleToggleComplete} />
+        handleToggleComplete={handleToggleComplete}
+        viewStatus={viewStatus}
+        toggleViewStatus={toggleViewStatus}
+        />
     </div>
   );
 }
