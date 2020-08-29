@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.todo-list-container {
+  display: flex;
+  justify-content: space-around;
+}
+
 .todo-list {
   list-style: none;
 }
