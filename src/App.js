@@ -14,17 +14,26 @@ function App() {
     setNewTodo(e.target.value)
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setTodoList(prevState => {
+      return [ ...prevState, newTodo ]
+    })
+    setNewTodo('')
+  }
+
   return (
     <div className="App">
       <h1>To Dos</h1>
       <AddTodoForm 
         newTodo={newTodo} 
-        setNewTodo={setNewTodo}
-        handleChange={handleChange} />
+        handleChange={handleChange}
+        handleSubmit={handleSubmit} />
       <TodoList 
         newTodo={newTodo}
         todoStatus={todoStatus}
-        setTodoStatus={setTodoStatus} />
+        setTodoStatus={setTodoStatus}
+        todoList={todoList} />
     </div>
   );
 }
