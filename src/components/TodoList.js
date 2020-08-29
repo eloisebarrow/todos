@@ -17,14 +17,19 @@ export default function Todo({ todoList, handleToggleComplete, viewStatus, toggl
   })
 
   return (
-    <div className="todo-list-container">
-      
+    <div className="todo-list-container">  
       <div>
-        <h3 onClick={() => toggleViewStatus()}>{viewStatus}</h3>
+        <h3 onClick={() => toggleViewStatus()}>To Do</h3>
         <ul className="todo-list">
-          { viewStatus === 'To Do' ? incompleteTodos : completedTodos }
+          { viewStatus === 'To Do' ? incompleteTodos : null }
         </ul>
-      </div>      
+      </div>
+      <div>
+        <h3 onClick={() => toggleViewStatus()}>Completed</h3>
+        <ul className="todo-list">
+          { viewStatus === 'Completed' ? completedTodos : null }
+        </ul>
+      </div>  
     </div>
   )
 }
