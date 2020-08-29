@@ -4,9 +4,28 @@
 
 .todo-list-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .todo-list {
   list-style: none;
+}
+
+.all-todos-container {
+  margin: 30px;
+  padding: 30px;
+  height: 100vh;
+  width: 500px;
+}
+
+.all-todos-container h3, li {
+  cursor: pointer;
+}
+
+.focus-todos-container {
+  box-shadow: 48px 64px 45px #aaa;
+}
+
+.focus-completed-container {
+  box-shadow: -48px 64px 45px #aaa;
 }

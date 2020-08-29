@@ -5,13 +5,13 @@ import TodoList from './components/TodoList';
 
 function App() {
   // HOOKS
-  const [newTodo, setNewTodo] = useState('')
-  const [isTodoComplete, setIsTodoComplete] = useState(false)
+  const [newTodo, setNewTodo] = useState({ 'content': '', 'isComplete': false })
   const [todoList, setTodoList] = useState([])
+  const [viewStatus, setViewStatus] = useState('To Do')
 
   const handleChange = (e) => {
     e.preventDefault()
-    setNewTodo(e.target.value)
+    setNewTodo({ content: e.target.value, isComplete: false })
   }
 
   const handleSubmit = (e) => {
@@ -19,18 +19,22 @@ function App() {
     setTodoList(prevState => {
       return [ ...prevState, newTodo ]
     })
-    setNewTodo('')
+    setNewTodo({ content: '', isComplete: false })
   }
 
-  const handleMarkComplete = (currentTodo) => {
-    toggleComplete()
+  const handleToggleComplete = (currentTodo) => {
+    currentTodo.isComplete = !currentTodo.isComplete
     setTodoList(prevState => {
-      return [ ...prevState.filter(todo => todo !== currentTodo) ]
+      return [ ...prevState ]
     })
   }
 
-  const toggleComplete = () => {
-    setIsTodoComplete(!isTodoComplete)
+  const toggleViewStatus = () => {
+    if (viewStatus === 'To Do') {
+      setViewStatus('Completed');
+    } else {
+      setViewStatus('To Do')
+    }    
   }
 
   return (
@@ -43,8 +47,10 @@ function App() {
       <TodoList 
         newTodo={newTodo}
         todoList={todoList}
-        handleMarkComplete={handleMarkComplete}
-        isTodoComplete={isTodoComplete} />
+        handleToggleComplete={handleToggleComplete}
+        viewStatus={viewStatus}
+        toggleViewStatus={toggleViewStatus}
+        />
     </div>
   );
 }
