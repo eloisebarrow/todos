@@ -22,10 +22,16 @@
   cursor: pointer;
 }
 
-.focus-todos-container {
-  box-shadow: 48px 64px 45px #aaa;
+.all-todos-container ul {
+  padding: 0;
 }
 
-.focus-completed-container {
-  box-shadow: -48px 64px 45px #aaa;
+.focus-todos-container h3 {
+  padding-bottom: 24px;
+  border-bottom: 1px solid #000;
+}
+
+.focus-completed-container h3 {
+  padding-bottom: 24px;
+  border-bottom: 1px solid #000;
 }
